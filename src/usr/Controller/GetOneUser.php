@@ -11,7 +11,7 @@ final class GetOneUser{
     function __invoke(ServerRequestInterface $request, string $id)
     {
         $User = [
-            'name' => $request->getParsedBody()['name']
+            'email' => $request->getParsedBody()['email']
         ];
 
         return JsonResponse::OK(['message' => "GET ONE USER {$id}", 'user' => $User]);

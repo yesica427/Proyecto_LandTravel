@@ -12,7 +12,7 @@ final class ErrorHandler{
         try {
            return $next($request);
         } catch(Throwable $error){
-            return JsonResponse::OK();
+            return JsonResponse::INTERNAL_ERROR($error->getMessage());
         }
     }
 }

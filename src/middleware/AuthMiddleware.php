@@ -2,27 +2,39 @@
 
 namespace App\Middleware;
 
-use App\Responses\JsonResponse;
-use Exception;
 use Psr\Http\Message\ServerRequestInterface;
-use React\MySQL\ConnectionInterface;
-use React\Promise\PromiseInterface;
 use Respect\Validation\Validator;
 
 final class AuthMiddleware{
     
-    public static function Validate(ServerRequestInterface $request) {
+    public function __construct(ServerRequestInterface $request)
+    {
+        $this->request = $request;
+    }
+
+    public function signUpValidate() : void{
         $emailValidator = Validator::key('email', 
             Validator::allOf(
                 Validator::notEmpty(),
                 Validator::stringType(),
                 Validator::email()
-            ));
+            ))->setName('email');
         
-        $nacionalidadValidator = Validator::key('nacionalidad',
+        $passwordValidator = Validator::key('password',
             Validator::allOf(
                 Validator::notEmpty(),
                 Validator::stringType()
-            ));
+            ))->setName('password');
+        
+        $validator = Validator::allOf($emailValidator, $passwordValidator);
+        $validator->assert($this->request->getParsedBody());
+    }
+
+    public function email() : string {
+        return $this->request->getParsedBody()['email'];
+    }
+
+    public function hashedPassword() : string {
+        return password_hash($this->request->getParsedBody()['password'], PASSWORD_DEFAULT);
     }
 }

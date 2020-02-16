@@ -32,6 +32,10 @@ final class JsonResponse extends \React\Http\Response{
     }
 
     public static function INTERNAL_ERROR($data) : self{
-        return new self(500, json_encode($data));
+        return new self(500, $data);
+    }
+
+    public static function BAD_REQUEST($data) : self {
+        return new self(400, ['errors' => $data]);
     }
 }
