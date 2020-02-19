@@ -22,7 +22,7 @@ final class CreateTour
     public function __invoke(ServerRequestInterface $request)
     {
         $input = new Input($request);
-        $input->createTourValidate();
+        $input->createValidate();
         
         return $this->storage->createTour($input->name(), $input->date(), $input->state(),
                                             (int) $input->number_p(), (float) $input->price(),

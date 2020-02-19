@@ -22,7 +22,7 @@ final class UpdateTour
     public function __invoke(ServerRequestInterface $request, $id)
     {
         $input = new Input($request);
-        $input->updateOrCreateValidate($id);
+        $input->createValidate($id);
         
         return $this->storage->updateOrCreate($input->name(), $input->date(), $input->state(),
                                             (int) $input->number_p(), (float) $input->price(),

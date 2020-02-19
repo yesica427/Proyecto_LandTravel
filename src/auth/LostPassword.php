@@ -7,6 +7,7 @@ use App\Mail\Mailer;
 use React\MySQL\QueryResult;
 use App\Responses\JsonResponse;
 use App\Auth\Exceptions\EmailDoesntExist;
+use App\Usr\User;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class LostPassword
@@ -21,11 +22,11 @@ final class LostPassword
     function __invoke(ServerRequestInterface $request)
     {
         $input = new Input($request);
-        $input->lostPasswordValidate();
+        $input->emailValidate();
 
         return $this->storage->lostPassword($input->email())
             ->then(
-                function () {
+                function (User $user) {
                     return JsonResponse::OK();
                 })
 

@@ -59,6 +59,7 @@ class ComposerStaticInitae3561dc0ce57bf44671ddcfc5c5a2cd
         ),
         'F' => 
         array (
+            'Firebase\\JWT\\' => 13,
             'FastRoute\\' => 10,
         ),
         'D' => 
@@ -168,6 +169,10 @@ class ComposerStaticInitae3561dc0ce57bf44671ddcfc5c5a2cd
         'PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'FastRoute\\' => 
         array (

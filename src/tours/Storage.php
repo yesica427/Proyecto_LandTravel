@@ -25,15 +25,23 @@ final class Storage
         return $this->connection->query('SELECT * FROM tours')
             ->then(
                 function (QueryResult $result) {
-                    if (isset($result->resultRows)) {
+                    if (!empty($result->resultRows)) {
                         return JsonResponse::OK(["data" => $result->resultRows]);
                     }
                 }
             );
     }
 
-    public function getOneTour()
+    public function getOneTour(string $id)
     {
+        return $this->connection->query('SELECT * FROM tours Where idTour = ?', [$id])
+            ->then(
+                function (QueryResult $result) {
+                    if (!empty($result->resultRows)) {
+                        return JsonResponse::OK(["data" => $result->resultRows]);
+                    }
+                }
+            );
     }
 
     public function searchTour()

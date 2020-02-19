@@ -29,6 +29,7 @@ return array(
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'PHPMailer\\' => array($vendorDir . '/phpmailer'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'DotEnv\\' => array($vendorDir . '/vlucas'),

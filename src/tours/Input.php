@@ -12,85 +12,111 @@ final class Input
         $this->request = $request;
     }
 
-    public function createTourValidate()
+    public function createValidate()
     {
-        $nombre_validate = Validator::key('nombre',
+        $nombre_validator = Validator::key(
+            'nombre',
             Validator::allOf(
                 Validator::stringType(),
                 Validator::notEmpty()
-            ))->setName('nombre');
+            )
+        )->setName('nombre');
 
-        $estado_validate = Validator::key('estado',
+        $estado_validator = Validator::key(
+            'estado',
             Validator::allOf(
                 Validator::stringType(),
+                Validator::noWhitespace(),
                 Validator::notEmpty()
-            ))->setName('estado');
+            )
+        )->setName('estado');
 
-        $fecha_i_validate = Validator::key('fecha_i',
+        $fecha_i_validator = Validator::key(
+            'fecha_i',
             Validator::allOf(
                 Validator::date('Y-m-d'),
                 Validator::notEmpty()
-            ))->setName('fecha_i');
-        
-        $cant_p_validate = Validator::key('cant_p',
+            )
+        )->setName('fecha_i');
+
+        $cant_p_validator = Validator::key(
+            'cant_p',
             Validator::allOf(
                 Validator::intVal(),
+                Validator::noWhitespace(),
                 Validator::notEmpty()
-            ))->setName('cant_p');
+            )
+        )->setName('cant_p');
 
-        $precio_validate = Validator::key('precio',
+        $precio_validator = Validator::key(
+            'precio',
             Validator::allOf(
                 Validator::floatVal(),
+                Validator::noWhitespace(),
                 Validator::notEmpty()
-            ))->setName('precio');
-        
-        $cupo_validate = Validator::key('cupo',
+            )
+        )->setName('precio');
+
+        $cupo_validator = Validator::key(
+            'cupo',
             Validator::allOf(
                 Validator::intVal(),
+                Validator::noWhitespace(),
                 Validator::notEmpty()
-            ))->setName('cupo');    
-        
-        $validator = Validator::allOf($nombre_validate, $estado_validate, $fecha_i_validate, $cant_p_validate, $precio_validate, $cupo_validate);
+            )
+        )->setName('cupo');
+
+        $validator = Validator::allOf($nombre_validator, $estado_validator, $fecha_i_validator, $cant_p_validator, $precio_validator, $cupo_validator);
         $validator->assert($this->request->getParsedBody());
     }
 
-    public function updateOrCreateValidate(string $id)
+    public function updateValidate($id)
     {
-        $this->createTourValidate();
-        $id_validate = Validator::key('id',
+        $this->createValidate();
+        $id_validator = Validator::key(
+            'id',
             Validator::allOf(
-                Validator::stringType(),
+                Validator::intVal(),
+                Validator::noWhitespace(),
                 Validator::notEmpty()
-            ))->setName('id');
-        $validator = Validator::allOf($id_validate);
+            )
+        )->setName('id');
+        $validator = Validator::allOf($id_validator);
         $validator->assert(['id' => $id]);
     }
 
-    public function name() : string {
+    public function name(): string
+    {
         return $this->request->getParsedBody()['nombre'];
     }
 
-    public function state() : string {
+    public function state(): string
+    {
         return $this->request->getParsedBody()['estado'];
     }
 
-    public function date() : string {
+    public function date(): string
+    {
         return $this->request->getParsedBody()['fecha_i'];
     }
 
-    public function number_p() : string {
+    public function number_p(): string
+    {
         return $this->request->getParsedBody()['cant_p'];
     }
 
-    public function price() : string {
+    public function price(): string
+    {
         return $this->request->getParsedBody()['precio'];
     }
 
-    public function cupo() : string {
+    public function cupo(): string
+    {
         return $this->request->getParsedBody()['cupo'];
     }
 
-    public function type() : string {
+    public function type(): string
+    {
         return $this->request->getParsedBody()['tipo'];
     }
 }

@@ -2,10 +2,11 @@
 
 namespace App\Auth;
 
-use App\Auth\Exceptions\EmailAlreadyTaken;
-use App\Mail\Mailer;
 use Exception;
+use App\Usr\User;
+use App\Mail\Mailer;
 use App\Responses\JsonResponse;
+use App\Auth\Exceptions\EmailAlreadyTaken;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class SignUp {
@@ -19,12 +20,12 @@ final class SignUp {
 
     public function __invoke(ServerRequestInterface $request){
         $input = new Input($request);
-        $input->signUpValidate();
+        $input->Validate();
 
         return $this->storage->create($input->fname(), $input->lname(), $input->hashedPassword(), $input->email())
             ->then(
-                function () use ($input) {
-                    $mail = Mailer::confirmationEmail($input->email(), '');
+                function (User $user) use ($input) {
+                    Mailer::confirmationEmail($input->email(), $user->usuario, $input->password());
                     return JsonResponse::CREATED();
                 })
 

@@ -45,12 +45,15 @@ final class Mailer
         }
     }
 
-    public static function confirmationEmail(string $address, string $credenciales) 
+    public static function confirmationEmail(string $address, string $usuario, string $contraseña) 
     {
         $subject = 'Credenciales de usuario';
         $body = "
         <h1> Land Travel </h1>
-        <p> Sus credenciales de usuario son $credenciales</p>";
+        <p> Sus credenciales de usuario son: </p> <br>
+        <p> Usuario: $usuario </p>
+        <p> Contraseña: $contraseña </p>
+        <p> Procure no perderlas. </p>";
         $mail = new self($address, $subject, $body);
         $mail->send();
     }
