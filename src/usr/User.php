@@ -1,7 +1,8 @@
 <?php
 
-namespace App\User;
+namespace App\Usr;
 
-final class User{
+final class User
+{
     
 }

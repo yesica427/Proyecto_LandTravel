@@ -10,13 +10,15 @@
         "respect/validation": "^1.1",
         "react/mysql": "^0.5.4",
         "vlucas/phpdotenv": "^4.1",
-        "react/promise": "^2.7"
+        "react/promise": "^2.7",
+        "psr/log": "^1.1"
     },
     "autoload": {
         "psr-4": {
             "App\\":"src",
             "React\\": "vendor/react",
-            "DotEnv\\": "vendor/vlucas"
+            "DotEnv\\": "vendor/vlucas",
+            "PHPMailer\\": "vendor/phpmailer"
         }
     }
 }

@@ -2,18 +2,21 @@
 
 namespace App\Usr\Controller;
 
-use App\Responses\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
-use React\Http\Response;
+use App\Templates\ControllerTemplate;
+use App\Usr\Storage;
 
-final class GetOneUser{
+final class GetOneUser
+{
+    private $storage;
+
+    function __construct(Storage $storage)
+    {
+        $this->storage = $storage;
+    }
 
     function __invoke(ServerRequestInterface $request, string $id)
     {
-        $User = [
-            'email' => $request->getParsedBody()['email']
-        ];
-
-        return JsonResponse::OK(['message' => "GET ONE USER {$id}", 'user' => $User]);
+        return $this->storage->getOneUser($id);
     }
 }

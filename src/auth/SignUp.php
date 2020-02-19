@@ -3,33 +3,34 @@
 namespace App\Auth;
 
 use App\Auth\Exceptions\EmailAlreadyTaken;
+use App\Mail\Mailer;
 use Exception;
-use App\Auth\Storage;
-use App\Middleware\AuthMiddleware;
 use App\Responses\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class SignUp{
+final class SignUp {
+
     private $storage;
 
-    public function __construct(Storage $storage)
+    function __construct(Storage $storage)
     {
         $this->storage = $storage;
     }
 
     public function __invoke(ServerRequestInterface $request){
-        $input = new AuthMiddleware($request);
+        $input = new Input($request);
         $input->signUpValidate();
 
-        return $this->storage->create($input->email(), $input->hashedPassword())
+        return $this->storage->create($input->fname(), $input->lname(), $input->hashedPassword(), $input->email())
             ->then(
-                function (){
+                function () use ($input) {
+                    $mail = Mailer::confirmationEmail($input->email(), '');
                     return JsonResponse::CREATED();
                 })
 
             ->otherwise(
                 function(EmailAlreadyTaken $exception){
-                    return JsonResponse::BAD_REQUEST('Email is taken');
+                    return JsonResponse::BAD_REQUEST('El correo ya existe');
                 })
 
             ->otherwise(

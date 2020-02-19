@@ -31,6 +31,10 @@ final class JsonResponse extends \React\Http\Response{
         return new self(201);
     }
 
+    public static function ACCEPTED() : self{
+        return new self(202);
+    }
+
     public static function INTERNAL_ERROR($data) : self{
         return new self(500, $data);
     }

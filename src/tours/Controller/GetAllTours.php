@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Usr\Controller;
+namespace App\Tours\Controller;
 
-use App\Usr\Storage;
+use App\Tours\Storage;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class GetAllUsers
-{
+final class GetAllTours{
+
     private $storage;
 
     function __construct(Storage $storage)
@@ -16,6 +16,6 @@ final class GetAllUsers
 
     function __invoke(ServerRequestInterface $request)
     {
-        return $this->storage->getAllUsers();
+        return $this->storage->getAllTours();
     }
 }

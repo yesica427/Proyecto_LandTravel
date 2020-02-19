@@ -1,8 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 
-use App\Core\ReactServer;
 use Dotenv\Dotenv;
+use App\Mail\Mailer;
+use App\Core\ReactServer;
 
 $port = 8080;
 $env = Dotenv::createImmutable(__DIR__);

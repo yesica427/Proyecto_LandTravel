@@ -2,19 +2,26 @@
 
 namespace App\Core;
 
+use App\Auth\LostPassword;
+use \React\Socket;
 use App\Auth\SignUp;
 use App\Core\Router;
+use \React\Http\Server;
 use App\Core\ErrorHandler;
+use \React\EventLoop\Factory;
+use FastRoute\RouteCollector;
+use FastRoute\RouteParser\Std;
 use App\Middleware\JsonDecoder;
 use App\Usr\Controller\GetOneUser;
 use App\Usr\Controller\GetAllUsers;
+use App\Usr\Storage as UserStorage;
+use App\Auth\Storage as AuthStorage;
+use App\Tours\Storage as ToursStorage;
+use App\Tours\Controller\CreateTour;
+use App\Tours\Controller\DeleteTour;
+use App\Tours\Controller\GetAllTours;
+use App\Tours\Controller\UpdateTour;
 use FastRoute\DataGenerator\GroupCountBased;
-use FastRoute\RouteCollector;
-use FastRoute\RouteParser\Std;
-use \React\Http\Server;
-use \React\EventLoop\Factory;
-use \React\Socket;
-use App\Auth\Storage as Users;
 
 final class ReactServer{
 
@@ -31,16 +38,32 @@ final class ReactServer{
         $this->loop = Factory::create();
         $mysql = new \React\MySQL\Factory($this->loop);
         $connection = $mysql->createLazyConnection($uri);
-        $users = new Users($connection);
+
+        // Middleware
+        $auth_storage = new AuthStorage($connection);
+        $users = new UserStorage($connection);
+        $tours = new ToursStorage($connection);
+
+        // Creacion de rutas
+        $this->routes = new RouteCollector(new Std(), new GroupCountBased());
 
         // Rutas Usuario
-        $this->routes = new RouteCollector(new Std(), new GroupCountBased());
-        $this->routes->get('/usr', new GetAllUsers());
-        $this->routes->get('/usr/{id:\d+}', new GetOneUser()); 
+        $this->routes->addGroup('/users', function ()  use($users) {
+            $this->routes->get('', new GetAllUsers($users));
+            $this->routes->get('/{id:\d+}', new GetOneUser($users));
+        });
+        
+        // Rutas Tours
+        $this->routes->addGroup('/tours', function ()  use($tours) {
+            $this->routes->get('', new GetAllTours($tours));
+            $this->routes->delete('/{id:\d+}', new DeleteTour($tours));
+            $this->routes->post('', new CreateTour($tours));
+            $this->routes->put('/{id:\d+}', new UpdateTour($tours));
+        });
 
         // Rutas Auth
-        $this->routes->post('/auth/signup', new SignUp($users));
-           
+        $this->routes->post('/auth/signup', new SignUp($auth_storage));
+        $this->routes->post('/auth/lost', new LostPassword($auth_storage));
     }
 
     public function loop(){

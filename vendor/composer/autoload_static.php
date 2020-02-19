@@ -50,10 +50,12 @@ class ComposerStaticInitae3561dc0ce57bf44671ddcfc5c5a2cd
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Prophecy\\' => 9,
             'PhpOption\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
+            'PHPMailer\\' => 10,
         ),
         'F' => 
         array (
@@ -143,6 +145,10 @@ class ComposerStaticInitae3561dc0ce57bf44671ddcfc5c5a2cd
         array (
             0 => __DIR__ . '/..' . '/react',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -158,6 +164,10 @@ class ComposerStaticInitae3561dc0ce57bf44671ddcfc5c5a2cd
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer',
         ),
         'FastRoute\\' => 
         array (
