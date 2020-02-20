@@ -21,7 +21,7 @@ final class JsonResponse extends \React\Http\Response
         return new self(200, $data);
     }
 
-    public static function NOT_FOUND(array $data = []): self
+    public static function NOT_FOUND(): self
     {
         return new self(404, ['message' => 'Not found']);
     }
@@ -31,9 +31,9 @@ final class JsonResponse extends \React\Http\Response
         return new self(405, ['message' => 'Method not allowed']);
     }
 
-    public static function CREATED(): self
+    public static function CREATED(array $data = []): self
     {
-        return new self(201);
+        return new self(201, $data);
     }
 
     public static function ACCEPTED(): self

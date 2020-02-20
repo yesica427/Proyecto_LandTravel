@@ -27,7 +27,7 @@ final class LostPassword
         return $this->storage->lostPassword($input->email())
             ->then(
                 function (User $user) {
-                    return JsonResponse::OK();
+                    return JsonResponse::OK(['message' => 'Se han enviado las credenciales, revise su correo']);
                 })
 
             ->otherwise(

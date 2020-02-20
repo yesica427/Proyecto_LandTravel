@@ -26,7 +26,7 @@ final class SignUp {
             ->then(
                 function (User $user) use ($input) {
                     Mailer::confirmationEmail($input->email(), $user->usuario, $input->password());
-                    return JsonResponse::CREATED();
+                    return JsonResponse::CREATED(['message' => 'Exito','signed' => true]);
                 })
 
             ->otherwise(

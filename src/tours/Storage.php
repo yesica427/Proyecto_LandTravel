@@ -25,9 +25,7 @@ final class Storage
         return $this->connection->query('SELECT * FROM tours')
             ->then(
                 function (QueryResult $result) {
-                    if (!empty($result->resultRows)) {
-                        return JsonResponse::OK(["data" => $result->resultRows]);
-                    }
+                    return JsonResponse::OK(['data' => $result->resultRows, 'count' => count($result->resultRows)]);
                 }
             );
     }
@@ -37,9 +35,7 @@ final class Storage
         return $this->connection->query('SELECT * FROM tours Where idTour = ?', [$id])
             ->then(
                 function (QueryResult $result) {
-                    if (!empty($result->resultRows)) {
-                        return JsonResponse::OK(["data" => $result->resultRows]);
-                    }
+                    return JsonResponse::OK(['data' => $result->resultRows]);
                 }
             );
     }
