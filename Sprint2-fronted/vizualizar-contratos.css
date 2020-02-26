@@ -1,0 +1,83 @@
+.container{
+    margin-bottom: 5em;
+}
+
+
+
+
+.form-row{
+    width: 50%;
+    margin-left: 20em;
+
+}  
+
+
+
+
+.btng{
+    background-color:rgb(255, 87, 51) ;
+    
+
+    
+    
+    
+}
+.btnre{
+    background-color:rgb(255, 87, 51) ; 
+    
+}
+
+.btnbuscar{
+
+    background-color:rgb(255, 87, 51) ;  
+
+}
+.inputPassword4{
+    color:rgb(255, 87, 51) ;
+}
+
+
+.formulario{
+    
+        
+        border-color: orangered;
+        border-collapse: separate;
+      border-spacing:  3px;
+      border: 4px solid rgb(255, 87, 51);
+      
+    
+      background: linear-gradient(top, rgba(255,255,255,0), rgba(255,255,255,1)), url(img/co.jpg);
+      background: linear-gradient( right, rgba(3, 68, 12, 0.322), white);
+    
+  
+}
+
+
+.dih{
+    margin-right: 5em;
+    margin-left: 11em;
+}
+
+
+.texto{
+  
+    
+   color: #2A5A24;
+    font-weight: bold;
+}
+
+
+body{
+    background-color:white;
+}
+
+
+
+.titulos{
+    margin-right: 10em;
+}
+
+.txtid{
+    border:2px solid rgb(255, 87, 51);
+
+}

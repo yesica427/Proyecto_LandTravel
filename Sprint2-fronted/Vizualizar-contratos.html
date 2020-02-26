@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Contratos</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="vizualizar-contratos.css">
+    <script src="https://kit.fontawesome.com/c9865cd77e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+    <div class="row">
+        <div class="col col-lg-6" >
+        <h3 class="texto">Listado De empleados</h3></div>
+        <div class="col col-lg-6">
+            <h3 class="texto">Buscar Identidad</h3>
+        </div>
+        <div class="col col-lg-6 ">
+            <button type="button"  class="btn data-toggle="dropdown" >
+                 <h5 class="texto">Seleccione un Empleado </h5> <span class="caret"></span>
+                 <select id="inputState" class="txtid" style="border-color: rgb(255, 87, 51);" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option></select>
+                </button></div>
+         <div class="col col-lg-6">   
+                <input type="text" style="border-color: rgb(255, 87, 51);" placeholder="Identidad"> <button class="btnbuscar" type="button" > <i class="fas fa-address-book"></i>Buscar</button></div>    
+        </div>
+
+        </div>
+    </div>
+    </div> 
+
+    <h3 class="texto titulos" style="margin-left: 15em;">Informacion Empleado</h3>
+
+    <form id="formu">
+      <div class="form-row formulario">
+        <div class="form-group col-md-6">
+          <label class ="texto" for="inputEmail4">Identidad</label>
+          <input type="email" class="form-control" class="inputEmail4" >
+        </div>
+        <div class="form-group col-md-6">
+          <label  class ="texto" for="inputPassword4">Numero De Contrato</label>
+          <input type="password" class="form-control" class="inputPassword4" >
+        </div>
+        <div class="form-group col-md-6">
+          <label class ="texto" for="inputPassword4">Primer Nombre</label>
+          <input type="password" class="form-control" class="inputPassword4" >
+      </div>
+      <div class="form-group col-md-6">
+        <label  class ="texto" for="inputPassword4">Segundo Nombre </label>
+        <input type="password" class="form-control" class="inputPassword4" >
+      </div>
+    
+
+    <div class="form-group col-md-6">
+        <label class ="texto" for="inputPassword4">Primer  Apellido</label>
+        <input type="password" class="form-control" class="inputPassword4" >
+      </div>
+      <div class="form-group col-md-6">
+          <label class ="texto" for="inputPassword4">Segundo Apellido</label>
+          <input type="password" class="form-control" class="inputPassword4" >
+        </div>
+      
+      
+      <div class="form-row dih">
+        <div class="form-group col-md-4">
+          <label class ="texto" for="inputCity">Horas De Trabajo</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+       
+        <div class="form-group col-md-4">
+          <label class ="texto" for="inputState">Dias De vacaciones</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4 ch">
+          <label class ="texto" for="inputState">Años De Duracion</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option></select>
+       
+      </div>
+   
+
+
+     
+    <div class="col col-md-6 ">
+     <button class="btng" type="button" ><i class="fas fa-save"></i>Guardar Cambios</button>   
+      </div>
+     <div class="col col-md-6 ">
+     <button  class="btnre" type="button" ><i class="fas fa-chalkboard-teacher"></i>Renovar</button> 
+     </div>
+    </div>
+     
+</body>
+
+</html>
